@@ -64,10 +64,10 @@ public class Methods {
         }
     }
 
-    public int[] arrayReverse (int... arr) {
+    public int[] arrayReverse(int... arr) {
         System.out.println("Задача 9");
         int a;
-        for (int i = 0, j = arr.length -1; i < arr.length / 2; i++, j--) {
+        for (int i = 0, j = arr.length - 1; i < arr.length / 2; i++, j--) {
             a = arr[i];
             arr[i] = arr[j];
             arr[j] = a;
@@ -110,7 +110,7 @@ public class Methods {
         int[] result = new int[maxLength];
 
         for (int i = 0; i < maxLength; i++) {
-            for(int j = 0; j < numberOfArraysToProcess; j++) {
+            for (int j = 0; j < numberOfArraysToProcess; j++) {
                 if (lengths[j] > i) {
                     result[i] += arr[j][i];
                 }
@@ -122,18 +122,15 @@ public class Methods {
 
     public void balancePoint(int[] arr) {
         System.out.println("Задача 7");
-        boolean balanced = false;
         for (int i = 0; i < arr.length - 1; i++) {
             int[] arr1 = createArray(0, i, arr);
             int[] arr2 = createArray(i + 1, arr.length - 1, arr);
             if (arrSum(arr1) == arrSum(arr2)) {
-                System.out.println("Массив сбалансирован, точка баланcа между %d и %d элементами.".formatted(i, i+1));
-                balanced = true;
+                System.out.println("Массив сбалансирован, точка баланcа между %d и %d элементами.".formatted(i, i + 1));
+                return;
             }
         }
-        if (!balanced) {
-            System.out.println("Массив не сбалансирован.");
-        }
+        System.out.println("Массив не сбалансирован.");
     }
 
     private int[] createLengthsArray(int[]... arr) {
@@ -146,7 +143,7 @@ public class Methods {
 
     private int findMaxLength(int[] lengths) {
         int max = 0;
-        for (int elem: lengths) {
+        for (int elem : lengths) {
             if (elem > max) max = elem;
         }
         return max;
