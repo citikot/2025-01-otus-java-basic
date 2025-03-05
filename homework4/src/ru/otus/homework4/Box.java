@@ -79,20 +79,17 @@ public class Box {
     }
 
     public boolean dropPayload() {
-        boolean success = false;
         if (isClosed()) {
             System.out.println("Коробка закрыта. Невозможно освободить. Сначала откройте коробку.");
-        } else {
-            if (isFull()) {
-                System.out.println(String.format("Из коробки вынули %s. Коробка готова к использованию.", payload));
-                payload = "";
-                success = true;
-            } else {
-                System.out.println("Коробка пуста. Нечего доставать.");
-            }
+            return false;
         }
-
-        return success;
+        if (isFull()) {
+            System.out.println("Коробка пуста. Нечего доставать.");
+            return false;
+        }
+        System.out.println(String.format("Из коробки вынули %s. Коробка готова к использованию.", payload));
+        payload = "";
+        return true;
     }
 
     public void printDescription() {
@@ -108,5 +105,6 @@ public class Box {
         } else {
             System.out.println("Коробка свободна.");
         }
+        System.out.println("-------------------------------------");
     }
 }

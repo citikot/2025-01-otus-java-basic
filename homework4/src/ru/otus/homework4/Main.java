@@ -21,7 +21,6 @@ public class Main {
         box.putPayload("подарок");
         box.dropPayload();
         box.printDescription();
-        System.out.println("-------------------------------------");
 
         User[] users = {
                 new User("Ivan", "Petrov", "Ivanovich", 1972, "ii@aa.com"),
