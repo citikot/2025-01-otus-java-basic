@@ -65,19 +65,17 @@ public class Box {
     }
 
     public boolean putPayload(String payload) {
-        boolean success = false;
         if (isClosed()) {
             System.out.println("Коробка закрыта. Невозможно ничего положить. Сначала откройте коробку.");
-        } else {
-            if (isFull()) {
-                System.out.println("Коробка занята. Сначала освободите коробку.");
-            } else {
-                System.out.println(String.format("В коробку положили %s.", payload));
-                this.payload = payload;
-                success = true;
-            }
+            return false;
         }
-        return success;
+        if (isFull()) {
+            System.out.println("Коробка занята. Сначала освободите коробку.");
+            return false;
+        }
+        System.out.println(String.format("В коробку положили %s.", payload));
+        this.payload = payload;
+        return true;
     }
 
     public boolean dropPayload() {
