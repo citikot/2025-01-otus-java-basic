@@ -11,7 +11,7 @@ public class Main {
         System.out.println("Время %.2f".formatted(cat1.swim(30)));
         cat1.info();
         System.out.println("________________________________");
-        Dog dog1 = new Dog("Шарик", 7, 3,380);
+        Dog dog1 = new Dog("Шарик", 6, 3,380);
         System.out.println("Время %.2f".formatted(dog1.run(50)));
         dog1.info();
         System.out.println("Время %.2f".formatted(dog1.run(120)));

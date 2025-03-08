@@ -39,6 +39,9 @@ public abstract class Animal {
     }
 
     public void setRunSpeed(int runSpeed) {
+        if (runSpeed < 0) {
+            throw new IllegalArgumentException("Скорость бега не может быть отрицательной.");
+        }
         this.runSpeed = runSpeed;
     }
 
@@ -46,8 +49,11 @@ public abstract class Animal {
         return swimSpeed;
     }
 
-    public void setSwimSpeed(int wimSpeed) {
-        this.swimSpeed = wimSpeed;
+    public void setSwimSpeed(int swimSpeed) {
+        if (swimSpeed < 0) {
+            throw new IllegalArgumentException("Скорость плавания не может быть отрицательной.");
+        }
+        this.swimSpeed = swimSpeed;
     }
 
     public int getStamina() {
@@ -55,6 +61,9 @@ public abstract class Animal {
     }
 
     public void setStamina(int stamina) {
+        if (stamina < 0) {
+            throw new IllegalArgumentException("Выносливость не может быть отрицательной.");
+        }
         this.stamina = stamina;
     }
 }
