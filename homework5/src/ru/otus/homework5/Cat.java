@@ -15,8 +15,6 @@ public class Cat extends Animal {
 
     @Override
     public double swim(int distance) {
-        System.out.println("Кот утонул, потому что не умеет плавать.");
-        this.setStamina(0);
-        return -1;
+        return doAction("плыть", this.getName(), Integer.MAX_VALUE, distance, 0);
     }
 }
