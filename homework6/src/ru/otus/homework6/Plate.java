@@ -11,19 +11,15 @@ public class Plate {
     }
 
     public void fill(int volume) {
-        currentCapacity += volume;
-        if (currentCapacity > maxCapaсity) {
-            currentCapacity = maxCapaсity;
-        }
+        currentCapacity = Math.min(currentCapacity + volume, maxCapaсity);
     }
 
     public boolean consume(int volume) {
-        currentCapacity -= volume;
-        if (currentCapacity < 0) {
-            currentCapacity = 0;
-            return false;
+        if (currentCapacity >= volume) {
+            currentCapacity -= volume;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }
