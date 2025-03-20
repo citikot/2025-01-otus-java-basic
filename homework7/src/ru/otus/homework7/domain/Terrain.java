@@ -2,7 +2,17 @@ package ru.otus.homework7.domain;
 
 public enum Terrain {
 
-    FOREST,
-    FLATLAND,
-    MARSH
+    FOREST ("темный лес"),
+    FLATLAND("равнина"),
+    MARSH("болото");
+
+    private String name;
+
+    private Terrain (String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 }
