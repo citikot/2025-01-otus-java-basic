@@ -1,23 +1,26 @@
 package ru.otus.homework7.domain;
 
-public class Atv implements Transport {
+public class Atv extends Vehicle {
 
-    private final int FUEL_CAPACITY = 120;
-    private final double FUEL_CONSUMPTION_PER_KM = 0.125;
-    private int currentFuel = FUEL_CAPACITY;
+    public Atv(double capacity, double consumption) {
+        this.capacity = capacity;
+        this.consumption = consumption;
+        this.prohibitedTerrains = null;
+        this.currentCapacity = capacity;
+    }
 
     @Override
-    public boolean move(double distance, Terrain terrain) {
-        if (getConsumption(distance) > currentFuel) {
+    public boolean move(Human person, double distance, Terrain terrain) {
+
+        if (getConsumption(distance) > currentCapacity) {
+            System.out.println(String.format("В вездеходе не хватит топлива на дистанцию %.2f км.", distance));
             return false;
         }
 
-        currentFuel -= getConsumption(distance);
+        currentCapacity -= getConsumption(distance);
+        System.out.println(String.format("%s проехал на вездеходе %.2f км по местности: %s. В баке осталось %.2f л топлива.",
+                person.getName(), distance, terrain.getName(), currentCapacity));
         return true;
-    }
-
-    private double getConsumption(double distance) {
-        return distance * FUEL_CONSUMPTION_PER_KM;
     }
 
 }

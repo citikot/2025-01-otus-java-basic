@@ -2,11 +2,12 @@ package ru.otus.homework7.domain;
 
 public class Human {
 
+    private final double STAMINA = 30;
+    private final double STAMINA_CONSUMPTION_PER_KM = 3;
+
     private String name;
     private Transport currentTransport;
-    private final int STAMINA = 30;
-    private final double STAMINA_CONSUMPTION_PER_KM = 3;
-    private int currentStamina = STAMINA;
+    private double currentStamina = STAMINA;
 
     public Human(String name, Transport currentTransport) {
         this.name = name;
@@ -35,20 +36,31 @@ public class Human {
         if (currentTransport == null) {
 
             if (getConsumption(distance) > currentStamina) {
-                System.out.println("{} столько не пройдет пешком. Нету больше сил.".formatted(name));
+                System.out.println(String.format("%s столько не пройдет пешком. Нет больше сил.", name));
                 return false;
             }
             currentStamina -= getConsumption(distance);
-            System.out.println("{} прошел пешком {} км, может еще пройти {} км".formatted(name, distance, currentStamina));
+            System.out.println(String.format(
+                    "%s прошел пешком %.2f км по местности: %s. Может еще пройти %.2f км.",
+                    name, distance, terrain != null ? terrain.getName() : "неизвестной", currentStamina
+            ));
 
             return true;
         }
 
-        return  currentTransport.move(distance, terrain);
+        return currentTransport.move(this, distance, terrain);
 
     }
 
-    private double getConsumption(double distance) {
+    public double getCurrentStamina() {
+        return currentStamina;
+    }
+
+    public void setCurrentStamina(double currentStamina) {
+        this.currentStamina = currentStamina;
+    }
+
+    public double getConsumption(double distance) {
         return distance * STAMINA_CONSUMPTION_PER_KM;
     }
 }
