@@ -12,6 +12,11 @@ public class Atv extends Vehicle {
     @Override
     public boolean move(Human person, double distance, Terrain terrain) {
 
+        if (distance < 0) {
+            System.out.println("Значение дистанции для преодоления должно быть положительным.");
+            return false;
+        }
+
         if (getConsumption(distance) > currentCapacity) {
             System.out.println(String.format("В вездеходе не хватит топлива на дистанцию %.2f км.", distance));
             return false;

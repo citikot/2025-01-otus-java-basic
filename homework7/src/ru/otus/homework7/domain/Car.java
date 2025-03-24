@@ -1,11 +1,6 @@
 package ru.otus.homework7.domain;
 
-import java.rmi.MarshalException;
-import java.util.Arrays;
 import java.util.List;
-
-import static ru.otus.homework7.domain.Terrain.FOREST;
-import static ru.otus.homework7.domain.Terrain.MARSH;
 
 public class Car extends Vehicle {
 
@@ -19,23 +14,24 @@ public class Car extends Vehicle {
     @Override
     public boolean move(Human person, double distance, Terrain terrain) {
 
+        if (distance < 0) {
+            System.out.println("Значение дистанции для преодоления должно быть положительным.");
+            return false;
+        }
+
         if (prohibitedTerrains.contains(terrain)) {
             System.out.println(String.format("Машина не может ехать по местности: %s. Смените транспорт или идите пешком.", terrain.getName()));
             return false;
         }
 
-        if (getConsumption(distance) > currentFuel) {
+        if (getConsumption(distance) > currentCapacity) {
             System.out.println(String.format("В машине не хватит топлива на дистанцию %.2f км.", distance));
             return false;
         }
 
-        currentFuel -= getConsumption(distance);
+        currentCapacity -= getConsumption(distance);
         System.out.println(String.format("%s проехал на машине %.2f км по местности: %s. В машине осталось %.2f л топлива.",
-                person.getName(), distance, terrain.getName(), currentFuel));
+                person.getName(), distance, terrain.getName(), currentCapacity));
         return true;
-    }
-
-    private double getConsumption(double distance) {
-        return distance * FUEL_CONSUMPTION_PER_KM;
     }
 }

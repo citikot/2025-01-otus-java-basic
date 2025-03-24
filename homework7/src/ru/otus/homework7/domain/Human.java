@@ -33,6 +33,11 @@ public class Human {
 
     public boolean move(double distance, Terrain terrain) {
 
+        if (distance < 0) {
+            System.out.println("Значение дистанции для преодоления должно быть положительным.");
+            return false;
+        }
+
         if (currentTransport == null) {
 
             if (getConsumption(distance) > currentStamina) {

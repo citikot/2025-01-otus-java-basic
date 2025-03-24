@@ -1,10 +1,6 @@
 package ru.otus.homework7.domain;
 
-import java.util.Arrays;
 import java.util.List;
-
-import static ru.otus.homework7.domain.Terrain.FOREST;
-import static ru.otus.homework7.domain.Terrain.MARSH;
 
 public class Bike extends Vehicle {
 
@@ -14,6 +10,11 @@ public class Bike extends Vehicle {
 
     @Override
     public boolean move(Human person, double distance, Terrain terrain) {
+
+        if (distance < 0) {
+            System.out.println("Значение дистанции для преодоления должно быть положительным.");
+            return false;
+        }
 
         if (prohibitedTerrains.contains(terrain)) {
             System.out.println(String.format("Велосипед не может ехать по местности: %s. Смените транспорт или идите пешком.", terrain.getName()));
