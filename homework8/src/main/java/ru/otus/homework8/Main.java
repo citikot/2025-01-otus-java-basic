@@ -31,38 +31,38 @@ public class Main {
                 {"1", "2", "3", "4"}};
 
         try {
-            Integer sum = calculateArraySum(arrCorrect);
+            int sum = calculateArraySum(arrCorrect);
             System.out.println("Sum of array elements: " + sum);
         } catch (AppArraySizeException | AppArrayDataException e) {
             e.printStackTrace();
         }
         try {
-            Integer sum = calculateArraySum(arrWrongLines);
+            int sum = calculateArraySum(arrWrongLines);
             System.out.println("Sum of array elements: " + sum);
         } catch (AppArraySizeException | AppArrayDataException e) {
             e.printStackTrace();
         }
         try {
-            Integer sum = calculateArraySum(arrWrongColumns);
+            int sum = calculateArraySum(arrWrongColumns);
             System.out.println("Sum of array elements: " + sum);
         } catch (AppArraySizeException | AppArrayDataException e) {
             e.printStackTrace();
         }
         try {
-            Integer sum = calculateArraySum(arrWrongElement);
+            int sum = calculateArraySum(arrWrongElement);
             System.out.println("Sum of array elements: " + sum);
         } catch (AppArraySizeException | AppArrayDataException e) {
             e.printStackTrace();
         }
     }
 
-    public static Integer calculateArraySum(String[][] arr) throws AppArrayDataException, AppArraySizeException {
+    public static int calculateArraySum(String[][] arr) {
 
         if (arr.length != ARRAY_SIZE) {
             throw new AppArraySizeException("Array length must be equal " + ARRAY_SIZE);
         }
 
-        Integer sum = 0;
+        int sum = 0;
 
         for (int i = 0; i < ARRAY_SIZE; i++) {
             if (arr[i].length != ARRAY_SIZE) {
