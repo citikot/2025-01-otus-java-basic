@@ -2,18 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Methods {
+public class PhoneBookService {
 
     PhoneBook phoneBook;
 
-    public Methods() {
+    public PhoneBookService() {
         this.phoneBook = new PhoneBook();
     }
 
     public void add(String name, String phoneNumber) {
 
-        if (containsPhoneNumber(phoneNumber)) {
-            System.out.println("Такой номер уже зарегистрирован.");
+        if (containsPhoneNumber(name, phoneNumber)) {
+            System.out.println("Такой номер у " + name + " уже зарегистрирован.");
         } else if (phoneBook.phoneBookRecords.containsKey(name)) {
             phoneBook.phoneBookRecords.get(name).add(phoneNumber);
         } else {
@@ -31,13 +31,9 @@ public class Methods {
         return new ArrayList<>();
     }
 
-    public boolean containsPhoneNumber(String phoneNumber) {
-
-        for (Map.Entry<String, List<String>> entry : phoneBook.phoneBookRecords.entrySet()) {
-            if (entry.getValue().contains(phoneNumber)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean containsPhoneNumber(String name, String phoneNumber) {
+        List<String> numbers = phoneBook.phoneBookRecords.get(name);
+        return numbers != null && numbers.contains(phoneNumber);
     }
+
 }

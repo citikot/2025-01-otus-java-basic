@@ -1,15 +1,18 @@
 public class Main {
 
-    static Methods methods = new Methods();
+    static PhoneBookService phoneBookService = new PhoneBookService();
 
     public static void main(String[] args) {
-        methods.add("Иван", "123456");
-        methods.add("Иван", "123456");
-        methods.add("Иван", "234567");
-        methods.add("Василий", "234567");
-        methods.add("Василий", "0987654");
-        System.out.println(methods.find("Иван"));
-        System.out.println(methods.find("Василий"));
-        System.out.println(methods.find("Петр"));
+        phoneBookService.add("Иван", "123456");
+        phoneBookService.add("Иван", "123456");
+        phoneBookService.add("Василий", "123456");
+        phoneBookService.add("Иван", "234567");
+        phoneBookService.add("Василий", "234567");
+        phoneBookService.add("Василий", "0987654");
+        phoneBookService.add("Василий", "0987654");
+        phoneBookService.add("Иван", "0987654");
+        System.out.println(phoneBookService.find("Иван"));
+        System.out.println(phoneBookService.find("Василий"));
+        System.out.println(phoneBookService.find("Петр"));
     }
 }
