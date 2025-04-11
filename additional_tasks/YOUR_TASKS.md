@@ -425,3 +425,145 @@ boolean isEmpty();
 class SimpleStack implements Stack<Integer> {
 //TODO
 }
+
+20. Доработайте метод getAllElements так, чтобы в случае возникновения ошибки 
+он в качестве результата записывал в список сообщение выброшенного исключения, 
+а также после каждой итерации в любом случае добавлял бы строку ""end""
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ExceptionTaskGetAllElements {
+private static String processString(String item) {
+if(item.contains("Ю")) {
+throw new IllegalArgumentException("Обнаружена буква Ю!");
+}
+if(item.contains("Ё")) {
+throw new NullPointerException("Ё не разрешено!");
+}
+return item;
+}
+
+public static String[] getAllElements(String[] input) {
+var result = new ArrayList<String>(input.length);
+for (String item : input) {
+//TODO
+result.add(processString(item));
+}
+return result.toArray(new String[0]);
+}
+
+
+public static void main(String[] args) {
+System.out.println(Arrays.toString(getAllElements(new String[]{"Ю", "б", "в", "Ю", "Д", "ЁЖ"})));
+}
+}
+
+21. Дан метод, который принимает два целочисленных значения и выводит разницу 
+их абсолютного значения |left - right| - однако в случае если left < right метод 
+возвращает CustomException - реализуйте класс данного исключения. В качестве 
+сообщения для исключения метод должен использовать строку 'my custom exception'
+
+public class ExceptionTaskCustomException {
+public static int simpleAbs(int left, int right) throws CustomException {
+if (left < right) {
+throw new CustomException("my custom exception");
+}
+return left - right;
+}
+
+public static void main(String[] args) throws Exception {
+System.out.println("No exception: " + simpleAbs(3, 2));
+try {
+System.out.println("Exception: " + simpleAbs(1, 2));
+System.out.println("Исключение не брошено, ошибка!");
+} catch (CustomException e) {
+System.out.println("Успешно брошено исключение.");
+}
+}
+}
+
+class CustomException extends Exception {
+
+//TODO
+}
+
+22. Дан метод, который содержит скрытые ошибки в вычислениях. 
+Необходимо доработать метод так, чтобы при возникновении ошибок 
+он продолжал работу, а результат вычисления итерации, на которой 
+была получена ошибка, был бы равен 0.
+
+public class ExceptionTaskBuggyMethod {
+private ExceptionTaskBuggyMethod(){}
+
+public static int buggyMethod(Integer[] inputNumbers) {
+int result = 0;
+for (var item: inputNumbers) {
+result += (item + 1) / item;
+}
+return result;
+}
+
+public static void main(String[] args) {
+buggyMethod(null);
+buggyMethod(new Integer[]{1, 0});
+}
+}
+
+23. Реализуйте метод, который принимает чётное количество целочисленных 
+элементов и попарно делит их друг на друга. Если в качестве делителя 
+встречается ноль, то нужно отловить ArithmeticException и записать 
+в качестве результата 0. Если общее количество элементов не является 
+чётным, метод должен бросить IllegalArgumentException Метод должен 
+вернуть массив с результатами деления (использовать обычное деление).
+
+import java.util.Arrays;
+
+public class ExceptionTaskDivide {
+private ExceptionTaskDivide(){}
+
+public static int[] divide(int... numbers) {
+//TODO
+return null;
+}
+
+public static void main(String[] args) {
+System.out.println("Делим попарно 4, 2, 4, 1: " + Arrays.toString(divide(4, 2, 4, 1)));
+System.out.println("Делим попарно 0, 2, 0, 0: " + Arrays.toString(divide(0, 2, 0, 0)));
+}
+}
+
+24. Напишите метод, который проверяет было ли выброшено исключение 
+(класс исключения передаётся параметром в метод)
+
+public class ExceptionTaskMain {
+
+    public static void main(String[] args) {
+        System.out.println("Этот вызов бросает нужное исключение: " +
+                ExceptionTask.invokesException(IllegalArgumentException.class, () -> {
+                    throw new IllegalArgumentException();
+                }));
+        System.out.println("Этот вызов не бросает исключение: " +
+                ExceptionTask.invokesException(IllegalArgumentException.class, () -> {
+                    var a = 2 * 2;
+                }));
+        System.out.println("Этот вызов бросает не то исключение: " +
+                ExceptionTask.invokesException(IllegalArgumentException.class, () -> {
+                    throw new ArrayIndexOutOfBoundsException();
+                }));
+    }
+
+}
+
+interface Callable {
+void call();
+}
+
+class ExceptionTask {
+private ExceptionTask() {
+}
+
+    public static <T extends Throwable> boolean invokesException(Class<T> clazz, Callable callable) {
+        //TODO
+    }
+}
