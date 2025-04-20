@@ -20,10 +20,10 @@ public class TaskService {
 
         long start = System.nanoTime();
 
-        Thread thread1 = new Thread(() -> fillArray(0, 250_000));
-        Thread thread2 = new Thread(() -> fillArray(250_000, 500_000));
-        Thread thread3 = new Thread(() -> fillArray(500_000, 750_000));
-        Thread thread4 = new Thread(() -> fillArray(750_000, ARRAY_SIZE));
+        Thread thread1 = new Thread(() -> fillArray(0, 25_000_000));
+        Thread thread2 = new Thread(() -> fillArray(25_000_000, 50_000_000));
+        Thread thread3 = new Thread(() -> fillArray(50_000_000, 75_000_000));
+        Thread thread4 = new Thread(() -> fillArray(75_000_000, ARRAY_SIZE));
 
         thread1.start();
         thread2.start();
@@ -46,22 +46,22 @@ public class TaskService {
         long start = System.nanoTime();
 
         Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < 250_000; i++) {
+            for (int i = 0; i < 25_000_000; i++) {
                 array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
             }
         });
         Thread thread2 = new Thread(() -> {
-            for (int i = 250_000; i < 500_000; i++) {
+            for (int i = 25_000_000; i < 50_000_000; i++) {
                 array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
             }
         });
         Thread thread3 = new Thread(() -> {
-            for (int i = 500_000; i < 750_000; i++) {
+            for (int i = 50_000_000; i < 75_000_000; i++) {
                 array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
             }
         });
         Thread thread4 = new Thread(() -> {
-            for (int i = 750_000; i < ARRAY_SIZE; i++) {
+            for (int i = 75_000_000; i < ARRAY_SIZE; i++) {
                 array[i] = 1.14 * Math.cos(i) * Math.sin(i * 0.2) * Math.cos(i / 1.2);
             }
         });
