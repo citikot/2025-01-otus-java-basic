@@ -11,9 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Scanner;
 
-public class UserInterfaceService {
+public class UserInteractionService {
 
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void processFilesCatalog(Map<String,String> filesCatalog) {
         while (true) {

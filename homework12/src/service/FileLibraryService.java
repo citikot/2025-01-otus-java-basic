@@ -8,9 +8,9 @@ import java.util.List;
 
 public class FileLibraryService {
 
-    String pathToSearch = "homework12/files";
-    FilesCatalog persistence = new FilesCatalog();
-    UserInterfaceService UIService = new UserInterfaceService();
+    private final String pathToSearch = "homework12/files";
+    private final FilesCatalog persistence = new FilesCatalog();
+    private final UserInteractionService UIService = new UserInteractionService();
 
     public void run() {
         System.out.println("File Library Processor started.");
