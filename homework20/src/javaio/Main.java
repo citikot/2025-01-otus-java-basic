@@ -26,11 +26,13 @@ public class Main {
             }
         } catch (IOException ex) {
             System.out.println("Ошибка при чтении файла: " + ex.getMessage());
+            scanner.close();
             return;
         }
 
         int count = countSubstring(str.toString(), subStr);
         System.out.printf("Подстрока %s встречается в файле %s %d раз(а).%n", subStr, fileName, count);
+        scanner.close();
     }
 
     public static int countSubstring(String str, String substr) {
